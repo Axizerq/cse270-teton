@@ -34,7 +34,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install flake8 pytest requests pytest-mock selenium requests-mock coverage
+        pip install flake8 pytest requests pytest-mock selenium requests-mock coverage responses  # Добавлен responses
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Lint with flake8
       run: |
@@ -45,10 +45,10 @@ jobs:
     - name: Startup HTTP Server for pipeline tests
       uses: Eun/http-server-action@v1.0.11
       with:
-        directory: .
+        directory: . 
         port: 5500
         index-files: |
-          ["index.html", "index.htm"]           
+          ["index.html", "index.htm"]
     - name: Run tests
       run: |
         pytest
@@ -70,7 +70,7 @@ jobs:
           # CodeQL supports [ 'cpp', 'csharp', 'go', 'java', 'javascript', 'python', 'ruby', 'swift' ]
           # Use only 'java' to analyze code written in Java, Kotlin or both
           # Use only 'javascript' to analyze code written in JavaScript, TypeScript or both
-          # Learn more about CodeQL language support at https://aka.ms/codeql-docs/language-support
+          # Learn more about CodeQL's query support at https://aka.ms/codeql-docs/language-support
   
     steps:
     - name: Checkout repository
@@ -81,34 +81,14 @@ jobs:
       uses: github/codeql-action/init@v3
       with:
         languages: ${{ matrix.language }}
-          # If you wish to specify custom queries, you can do so here or in a config file.
-          # By default, queries listed here will override any specified in a config file.
-          # Prefix the list here with "+" to use these queries and those in the config file.
   
-          # For more details on CodeQL's query packs, refer to: https://docs.github.com/en/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/configuring-code-scanning#using-queries-in-ql-packs
-          # queries: security-extended,security-and-quality
-  
-  
-      # Autobuild attempts to build any compiled languages (C/C++, C#, Go, Java, or Swift).
-      # If this step fails, then you should remove it and run the build manually (see below)
     - name: Autobuild
       uses: github/codeql-action/autobuild@v3
-  
-      # ℹ️ Command-line programs to run using the OS shell.
-      # 📚 See https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsrun
-  
-      #   If the Autobuild fails above, remove it and uncomment the following three lines.
-      #   modify them (or add more) to build your code if your project, please refer to the EXAMPLE below for guidance.
-  
-      # - run: |
-      #     echo "Run, Build Application using script"
-      #     ./location_of_script_within_repo/buildscript.sh
   
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3
       with:
         category: "/language:${{matrix.language}}"
-    # Single deploy job since we're just deploying
 
   deploy:
     needs: analyze
