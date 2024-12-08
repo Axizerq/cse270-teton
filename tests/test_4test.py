@@ -18,7 +18,7 @@ class Test4test():
         )
         
         # Wait for the server to start
-        self.wait_for_server("http://127.0.0.1:5501", timeout=15)
+        self.wait_for_server("http://127.0.0.1:5500", timeout=15)
         
         # Set up Selenium WebDriver
         options = Options()
@@ -49,7 +49,7 @@ class Test4test():
         raise RuntimeError(f"Server did not start within {timeout} seconds")
 
     def test_directorypage(self):
-        self.driver.get("http://127.0.0.1:5501/teton/1.6/index.html")
+        self.driver.get("http://127.0.0.1:5500/teton/1.6/index.html")
         self.driver.set_window_size(1361, 738)
         
         # Wait for the "Directory" link to be clickable
