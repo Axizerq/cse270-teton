@@ -14,7 +14,7 @@ class Test4test:
 
         self.project_directory = os.path.join(os.getcwd(), "teton", "1.6")
         # Ensure this is the correct directory path
-        self.project_directory = "C:/Users/Андрей/Downloads/cse270/teton/1.6"  # Update this path to your actual directory
+        #self.project_directory = "C:/Users/Андрей/Downloads/cse270/teton/1.6"  # Update this path to your actual directory
 
         # Start the server (assuming you're using python -m http.server to start it)
         self.server_process = subprocess.Popen(["python", "-m", "http.server", "5500"], cwd=self.project_directory)
