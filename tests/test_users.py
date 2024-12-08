@@ -58,3 +58,4 @@ def test_users_endpoint_valid_credentials_mocked(username, password, expected_st
 
     # Assert response body
     assert response.text == expected_response, f"Expected response body '{expected_response}', got '{response.text}'"
+    
