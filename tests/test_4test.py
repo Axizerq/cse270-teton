@@ -52,4 +52,4 @@ class Test4test:
     def test_smokeside(self):
         self.driver.get("http://127.0.0.1:5500/teton/1.6/")
         self.driver.set_window_size(1361, 738)
-        #
+        
