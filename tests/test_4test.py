@@ -53,4 +53,3 @@ class Test4test:
         self.driver.get("http://127.0.0.1:5500/teton/1.6/")
         self.driver.set_window_size(1361, 738)
         # Add assertions for the test as needed
-
