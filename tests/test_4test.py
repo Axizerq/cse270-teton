@@ -10,6 +10,8 @@ import requests  # To check if the server is running
 class Test4test:
     # Start the server before the tests
     def setup_method(self, method):
+
+        self.project_directory = os.path.join(os.getcwd(), "teton", "1.6")
         # Ensure this is the correct directory path
         self.project_directory = "C:/Users/Андрей/Downloads/cse270/teton/1.6"  # Update this path to your actual directory
 
